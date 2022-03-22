@@ -1,12 +1,12 @@
 // Lecture 1
-// const { add, addAndMult } = require("./lib/add");
+const { add, addAndMult } = require("./lib/add");
 // const { diff, diffAnother } = require("./lib/diff");
 
 // require("./lib/mult");
 // require("./lib/patch");
 
-// console.log("add: 2 + 3 =", add(2, 3));
-// console.log("addAndMult: (2 + 3) * 2 * 3 =", addAndMult(2, 3));
+console.log("add: 2 + 3 =", add(2, 3));
+console.log("addAndMult: (2 + 3) * 2 * 3 =", addAndMult(2, 3));
 // console.log("diff: 2 - 3 =", diff(2, 3));
 // console.log("diffAnother: 2 - 3 - 5 =", diffAnother(2, 3, 5));
 // console.log("mult: 2 * 3 =", mult(2, 3));
@@ -26,7 +26,9 @@ const argv = yargs(hideBin(process.argv)).argv;
 
 const COLOR = argv.color;
 
+console.log(process.env);
 console.log(process.argv);
+console.log(argv);
 
 console.log(chalk[COLOR](process.env.MONGO_URI, process.env.HTTP_PORT));
 
@@ -42,7 +44,7 @@ const timer = setTimeout(() => {
     console.log('Hoora!!! I have found!');
     processing = false;
     clearInterval(interval);
-}, 5000);
+}, 15000);
 
 // clearTimeout(timer);
 

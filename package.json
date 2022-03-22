@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "cross-env MONGO_URI=local:test@test HTTP_PORT=3000 node app.js --color=red --dev ",
-    "start:debug": "node --inspect app.js  --dev --color=red"
+    "start:debug": "node --inspect app.js --dev -F --color=red"
   },
   "author": "",
   "license": "ISC",
