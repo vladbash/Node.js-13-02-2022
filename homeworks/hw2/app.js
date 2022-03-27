@@ -8,6 +8,9 @@ if (!args.dir || !args.file) {
     process.exit(1);
 }
 
+// fileUtils.setVerbose(args.verbose);
+fileUtils.notifications.setVerbose(args.verbose);
+
 // SYNC VERSION
 // fileUtils.notifications.addListener('error', err => {
 //     console.error('[FILE UTILS][ERROR]', err.toString());
@@ -39,5 +42,5 @@ fileUtils.notifications.addListener('success', file => {
 });
 
 fileUtils.notifications.addListener('data', content => {
-    console.log('[FILE UTILS][DATA]', content);
+    // console.log('[FILE UTILS][DATA]', content);
 });

@@ -1,31 +1,60 @@
 const { Writable } = require('stream');
 const { once } = require('events');
+const fs = require('fs');
 
-class Counter extends Writable {
-    _write(chunk, encoding, callback) {
-        console.log(chunk.toString());
-        callback();
+// DEMO 1: Abstract Writable Stream
+{
+    class Counter extends Writable {
+        _write(chunk, encoding, callback) {
+            console.log(chunk.toString());
+            callback();
+        }
     }
+
+
+    const counter = new Counter({ highWaterMark: 2 });
+
+    // Good
+    // for (let i = 1; i < 1000; i += 1) {
+    //   counter.write(Buffer.from(`${i}`, 'utf8'));
+    // }
+
+    // Better
+    // (async () => {
+    //     for (let i = 1; i < 1000; i += 1) {
+    //         const canWrite = counter.write(Buffer.from(`${i}`, 'utf8'));
+
+    //         console.log(`Can we write bunch of data? ${canWrite}`);
+
+    //         if (!canWrite) {
+    //             await once(counter, 'drain');
+    //             console.log('drain event fired.');
+    //         }
+    //     }
+    // })();
 }
 
+// DEMO 2: File Writable Stream
+{
+    // const writeStream = fs.createWriteStream('./writableStreamDemo.txt', { encoding: 'utf-8' });
 
-const counter = new Counter({ highWaterMark: 2 });
+    // writeStream.on('finish', () => {
+    //     console.log('[STREAM FINISHED]');
+    // });
 
-// Good
-// for (let i = 1; i < 1000; i += 1) {
-//   counter.write(Buffer.from(`${i}`, 'utf8'));
-// }
+    // writeStream.on('error', (err) => {
+    //     console.log('[STREAM ERROR]', err);
+    // });
 
-// Better
-// (async () => {
-//     for (let i = 1; i < 1000; i += 1) {
-//         const canWrite = counter.write(Buffer.from(`${i}`, 'utf8'));
+    // writeStream.on('close', () => {
+    //     console.log('[STREAM CLOSED]');
+    // });
 
-//         console.log(`Can we write bunch of data? ${canWrite}`);
+    // writeStream.write('data');
 
-//         if (!canWrite) {
-//             await once(counter, 'drain');
-//             console.log('drain event fired.');
-//         }
-//     }
-// })();
+    // writeStream.destroy();
+
+    // writeStream.write('new data');
+
+    // writeStream.end('data ended');
+}

@@ -1,17 +1,21 @@
 const fs = require('fs');
 
-// const readStream = fs.createReadStream('./demo.txt', { encoding: 'utf-8' });
+// Implement copying of content from one file to a new one via stream pipes
 
-// readStream.on('data', chunk => {
-//     console.log('Received: ', chunk.toString());
+const readable$ = fs.createReadStream('./cat.jpeg');
+const writable$ = fs.createWriteStream('./cat-clone.jpeg');
+
+// [??stream??].pipe(steam);
+
+readable$.pipe(writable$);
+
+// 
+
+// readable$.on('data', chunk => {
+//     console.log(chunk);
+//     writable$.write(chunk);
 // });
 
-// readStream.on('end', () => {
-//     console.log('FILE WAS READ');
+// readable$.on('end', () => {
+//     writable$.end();
 // });
-
-// ??? console.log('PROGRAM END');
-
-// const writeStream = fs.createWriteStream('./writableStreamDemo.txt', { encoding: 'utf-8' });
-
-// writeStream.write('data');

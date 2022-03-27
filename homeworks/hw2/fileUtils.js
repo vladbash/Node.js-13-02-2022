@@ -4,7 +4,43 @@ const path = require('path');
 const { promisify } = require('util');
 const EventEmitter = require('events');
 
-const notifications = new EventEmitter();
+class ExtEventEmitter extends EventEmitter {
+    constructor(options) {
+        super(options);
+        this._verbose = false;
+    }
+
+    setVerbose(value) {
+        console.warn(`[ExtEventEmitter] Verbose mode: ${!!value}`);
+        this._verbose = value;
+    }
+
+    putLogsToFile(event, ...payload) {
+        fs.writeFile('./events.log', `[${new Date().toISOString()}][${event}] ${payload}\n`, { flag: 'a+' }, (err) => {
+            console.error(err);
+        });
+    }
+
+    emit(event, ...args) {
+        this._verbose && this.putLogsToFile(event, ...args);
+        return super.emit(event, ...args);
+    }
+}
+
+const notifications = new ExtEventEmitter();
+
+// let _verbose = false;
+
+// function putLogsToFile(event, ...payload) {
+//     fs.writeFile('./events.log', `[${new Date().toISOString()}][${event}] ${payload}\n`, { flag: 'a+' }, (err) => {
+//         console.error(err);
+//     });
+// }
+
+// function setVerbose(value) {
+//     console.warn(`verbose mode: ${value}`);
+//     _verbose = value;
+// }
 
 function seekSync(dir, file) {
     try {
@@ -142,14 +178,18 @@ async function seek(dir, file) {
         let content;
         if (files.includes(file)) {
             notifications.emit('success', path.join(dir, file));
+            // _verbose && putLogsToFile('success', path.join(dir, file));
             content = await fsPromises.readFile(path.join(dir, file), 'utf-8');
             notifications.emit('data', content);
+            // _verbose && putLogsToFile('data', content);
         } else {
-            notifications.emit('err',`File doesn't exist`);
+            notifications.emit('err', `File doesn't exist`);
+            // _verbose && putLogsToFile('err', `File doesn't exist`);
         }
     } catch (err) {
         console.log(err);
         notifications.emit('err', err);
+        // _verbose && putLogsToFile('err', err);
     }
 
     // return _emitter;
