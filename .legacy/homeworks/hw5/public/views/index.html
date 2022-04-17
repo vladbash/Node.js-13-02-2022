@@ -15,10 +15,14 @@
             {%list%}
         </ul>
     </div>
-    <form action="/" method="post">
-        <input type="text" name="itemValue">
-        <input type="submit" value="Add item">
-    </form>
+    if (loggedIn) {
+        <form action="/" method="post">
+            <input type="text" name="itemValue">
+            <input type="submit" value="Add item">
+        </form>
+    } else {
+        login form
+    }
 </body>
 
 </html>

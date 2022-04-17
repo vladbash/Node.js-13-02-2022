@@ -1,0 +1,25 @@
+{
+  "name": "node-13-02-22",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "cross-env MONGO_URI=local:test@test HTTP_PORT=3000 node app.js --color=red --dev ",
+    "start:debug": "node --inspect app.js --dev -F --color=red"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "query-string": "^7.1.1",
+    "yargs": "^17.3.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "http-server": "^13.1.0",
+    "nodemon": "^2.0.15"
+  }
+}

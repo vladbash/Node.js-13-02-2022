@@ -2,24 +2,31 @@
   "name": "node-13-02-22",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
-  "directories": {
-    "lib": "lib"
-  },
+  "main": "server.js",
   "scripts": {
-    "start": "cross-env MONGO_URI=local:test@test HTTP_PORT=3000 node app.js --color=red --dev ",
-    "start:debug": "node --inspect app.js --dev -F --color=red"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "start:dev": "nodemon --inspect server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladbash/Node.js-13-02-2022.git"
   },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vladbash/Node.js-13-02-2022/issues"
+  },
+  "homepage": "https://github.com/vladbash/Node.js-13-02-2022#readme",
   "dependencies": {
-    "chalk": "^4.1.2",
-    "query-string": "^7.1.1",
-    "yargs": "^17.3.1"
+    "config": "^3.3.7",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "pug": "^3.0.2"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
-    "http-server": "^13.1.0",
     "nodemon": "^2.0.15"
   }
 }
