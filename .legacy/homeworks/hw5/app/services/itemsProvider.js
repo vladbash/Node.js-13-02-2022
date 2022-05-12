@@ -29,7 +29,7 @@ class ItemDataProvider {
             file$.on('end', () => {
                 res(result);
             });
-
+            
             file$.on('error', rej);
         });
 

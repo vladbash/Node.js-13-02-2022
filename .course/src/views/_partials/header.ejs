@@ -1,0 +1,9 @@
+<header>
+    Header
+    <% if (!auth) { %>
+    <a href="/signin">Sign in</a>
+    <a href="/signup">Sign up</a>
+    <% } else { %>
+    <a href="/logout">Log out</a>
+    <% } %>
+</header>
