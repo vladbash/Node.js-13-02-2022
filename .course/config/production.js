@@ -4,5 +4,8 @@ module.exports = {
     },
     session: {
         secret: 'hillelNodeCourse'
+    },
+    db: {
+        connectionString: ''
     }
 };

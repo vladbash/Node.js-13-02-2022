@@ -1,3 +1,6 @@
 module.exports = {
-    ...require('./production')
+    ...require('./production'),
+    db: {
+        connectionString: 'mongodb://localhost:27017/test'
+    }
 };

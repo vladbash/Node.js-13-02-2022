@@ -3,6 +3,7 @@ const config = require('config');
 const path = require('path');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const { appRouter } = require('./src');
 
@@ -23,6 +24,13 @@ app.use(session({
 
 app.use('/', appRouter);
 
-app.listen(config.get('http.port'), () => {
-    console.log(`Server is running on http://localhost:${config.get('http.port')}`);
-});
+// As a variant
+// mongoose.set('bufferCommands', true);
+mongoose.connect(config.get('db.connectionString'))
+    .then(() => {
+        app.listen(config.get('http.port'), () => {
+            console.log(`Server is running on http://localhost:${config.get('http.port')}`);
+        });
+    }).catch(e => {
+        console.error('Connection error: ', e);
+    });
