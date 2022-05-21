@@ -7,7 +7,7 @@ homeRouter.get('/', async (req, res) => {
     const user = await User.findOne();
     console.log(user.get('age'));
     const { auth } = req.session;
-    res.render('index', { auth });
+    res.render('chat-room', { auth });
 });
 
 homeRouter.post('/', (req, res) => {

@@ -5,7 +5,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const { appRouter } = require('./src');
+const { appRouter, apiRouter } = require('./src');
 
 const app = express();
 
@@ -22,6 +22,7 @@ app.use(session({
     saveUninitialized: true,
 }));
 
+app.use('/api', apiRouter);
 app.use('/', appRouter);
 
 // As a variant
