@@ -18,7 +18,6 @@ loginRouter.post('/', async (req, res) => {
             const user = await userService.login(email, password);
 
             req.session.user = user;
-            res.locals.auth = true;
             res.redirect('/');
         } catch (e) {
             console.error(e);
