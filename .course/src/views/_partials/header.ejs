@@ -1,9 +1,39 @@
-<header>
-    Header
-    <% if (!auth) { %>
-    <a href="/signin">Sign in</a>
-    <a href="/signup">Sign up</a>
-    <% } else { %>
-    <a href="/logout">Log out</a>
-    <% } %>
+<header class="mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
+        <div class="container">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi bi-chat-left-quote" viewBox="0 0 16 16" width="40" height="32" role="img"
+                    aria-label="Bootstrap" fill="#999c9d">
+                    <path
+                        d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                    <path
+                        d="M7.066 4.76A1.665 1.665 0 0 0 4 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112zm4 0A1.665 1.665 0 0 0 8 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112z" />
+                </svg>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation"
+                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                </ul>
+                <div class="text-end">
+                    <% if (!auth) { %>
+                    <a class="btn btn-outline-light me-2" href="/login">Log in</a>
+                    <a class="btn btn-warning" href="/signup">Sign up</a>
+                    <% } else { %>
+                    <a class="btn btn-warning" href="/logout">Log out</a>
+                    <% } %>
+                </div>
+            </div>
+
+        </div>
+    </nav>
 </header>

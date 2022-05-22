@@ -3,8 +3,7 @@ const Joi = require('joi');
 
 const scheme = Joi.object({
     email: Joi.string().email().required(),
-    username: Joi.string().min(2).max(24).required(),
-    DOB: Joi.date(),
+    name: Joi.string().min(2).max(24).required(),
     password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{7,30}$')),
     confirmPassword: Joi.ref('password')
 });

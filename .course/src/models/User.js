@@ -1,22 +1,37 @@
-const { Schema, SchemaTypes, model } = require('mongoose');
+const { Schema, SchemaTypes, model, Types } = require('mongoose');
 
 const UserSchema = new Schema({
-    email: String,
-    password: SchemaTypes.String,
-    role: {
-        type: SchemaTypes.Number,
-        default: 1,
+    name: {
+        type: SchemaTypes.String,
+        required: true,
     },
-    DOB: Date,
+    email: {
+        type: SchemaTypes.String,
+        required: true,
+        unique: true,
+        index: true
+    },
+    password: {
+        type: SchemaTypes.String,
+        required: true
+    },
+    verified: {
+        type: SchemaTypes.Boolean,
+        default: false
+    },
+    verifyingKey: {
+        type: SchemaTypes.String,
+        default: () => {
+            return (new Types.ObjectId()).toString();
+        }
+    },
+    avatarUrl: {
+        type: SchemaTypes.String,
+    },
+    documents: {
+        type: SchemaTypes.ObjectId,
+        ref: 'Document'
+    }
 });
 
-UserSchema.virtual('age').get((_, __, doc) => new Date().getFullYear() - new Date(doc.DOB).getFullYear());
-
-// UserSchema.methods.generateUser = () => {
-//     const email = 'admin@admin.com';
-//     const password = '123';
-//     this.save({});
-// };
-
-const User = model('User', UserSchema, 'users');
-module.exports = User;
+module.exports = model('User', UserSchema, 'users');

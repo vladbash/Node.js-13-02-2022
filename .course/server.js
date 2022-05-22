@@ -9,6 +9,10 @@ const { appRouter, apiRouter } = require('./src');
 
 const app = express();
 
+app.locals = {
+    auth: false
+};
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src', 'views'));
 app.set('trust proxy', 1);
@@ -22,6 +26,7 @@ app.use(session({
     saveUninitialized: true,
 }));
 
+app.use('/assets', express.static(path.join('public', 'assets')));
 app.use('/api', apiRouter);
 app.use('/', appRouter);
 

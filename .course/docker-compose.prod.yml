@@ -1,0 +1,7 @@
+version: '3'
+services:
+  course-app:
+    build: 
+      context: .
+      dockerfile: ./.docker/Dockerfile.prod
+    

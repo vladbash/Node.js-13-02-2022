@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('_partials/head.ejs', { title: 'Sign Up' }) %>
+<%- include('_partials/head.ejs', { title: 'Sign In' }) %>
 
 <body class="d-flex flex-column vh-100">
     <%- include('_partials/header', { auth }); -%>
     <main class="flex-shrink-0 h-90">
         <div class="container">
             <% if (error) { %>
-                <span><%= error %> </span>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
             <% } %>
             <form class="auth-form-container w-100 m-auto" method="POST">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="user-name" placeholder="e.g. John Doe" name="name">
-                    <label for="user-name">Your name</label>
-                </div>
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="email" placeholder="e.g. name@example.com"
                         name="email">
@@ -23,10 +21,9 @@
                     <input type="password" class="form-control" id="password" placeholder="Password" name="password">
                     <label for="password">Password</label>
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="repeat-password" placeholder="Repeat Password"
-                        name="confirmPassword">
-                    <label for="repeat-password">Repeat Password</label>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="check-me-out">
+                    <label class="form-check-label" for="check-me-out">Check me out</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

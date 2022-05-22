@@ -1,6 +1,6 @@
 module.exports = {
     http: {
-        port: 3000
+        port: 80
     },
     session: {
         secret: 'hillelNodeCourse'
