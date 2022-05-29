@@ -22,13 +22,15 @@ services:
     networks:
       - local
     volumes:
-      - ../data-volumes:/data/db
+      - ../data-volumes/db:/data/db
   redis:
-    image: redis:latest
+    image: bitnami/redis:latest
     networks:
       - local
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - ../data-volumes:/data/db
+      - ../data-volumes/redis:/bitnami/redis/data
 networks:
   local:
 
