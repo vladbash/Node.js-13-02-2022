@@ -1,29 +1,37 @@
 const { Router } = require('express');
-const { signupValidation } = require('../../validations');
-const { userService } = require('../../services');
+const passport = require('passport');
 
 const loginRouter = new Router();
 
 loginRouter.get('/', (req, res) => {
-    res.render('login', { error: '' });
+    res.render('login');
 });
 
-loginRouter.post('/', async (req, res) => {
-    // const { error } = req.validation;
-    // if (error) {
-    //     res.render('login', { error });
-    // } else {
-        try {
-            const { email, password } = req.body;
-            const user = await userService.login(email, password);
+loginRouter.get('/federated/google', passport.authenticate('google'));
 
-            req.session.user = user;
-            res.redirect('/');
-        } catch (e) {
-            console.error(e);
-            res.render('login', { error: 'Invalid credentials' });
-        }
-   // }
+loginRouter.post('/', async (req, res, next) => {
+    const { error } = req.validation || {};
+    if (error) {
+        res.render('login', { error });
+    } else {
+        const { email } = req.body;
+        req.body.username = email;
+
+        passport.authenticate('local',
+            // (err, user, messages) => {
+            //     if (user) {
+            //         res.redirect('/');
+            //     } else {
+            //         res.render('login', messages);
+            //     }
+            // }
+            {
+                successReturnToOrRedirect: '/',
+                failureRedirect: '/login',
+                failureMessage: true
+            }
+        )(req, res, next);
+    }
 });
 
 module.exports = loginRouter;

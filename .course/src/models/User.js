@@ -9,7 +9,7 @@ const UserSchema = new Schema({
         type: SchemaTypes.String,
         required: true,
         unique: true,
-        index: true
+        index: true,
     },
     password: {
         type: SchemaTypes.String,

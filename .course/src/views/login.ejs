@@ -6,11 +6,13 @@
     <%- include('_partials/header', { auth }); -%>
     <main class="flex-shrink-0 h-90">
         <div class="container">
-            <% if (error) { %>
+            <% if (messages && messages.length) { 
+                messages.forEach((message) => {
+                %>
             <div class="alert alert-danger" role="alert">
-                <%= error %>
+                <%= message %>
             </div>
-            <% } %>
+            <% })} %>
             <form class="auth-form-container w-100 m-auto" method="POST">
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="email" placeholder="e.g. name@example.com"
@@ -26,6 +28,8 @@
                     <label class="form-check-label" for="check-me-out">Check me out</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <p>Or</p>
+                <a class="button google" href="/login/federated/google">Sign in with Google</a>
             </form>
         </div>
     </main>

@@ -7,7 +7,6 @@ const login = async (email, password) => {
         delete user.password;
         return user;
     }
-    throw new Error('Invalid credentials');
 };
 
 // TODO: add error handling (HW)
@@ -24,6 +23,7 @@ const signup = async (name, email, password) => {
 
         return user;
     } catch (e) {
+        console.error('[user.service][sign up]: ', e);
         if (e.code === 11000) {
             throw new Error(`${email} is already exist in system`);
         }
