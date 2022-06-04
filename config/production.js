@@ -1,6 +1,6 @@
 module.exports = {
     ...require('./default'),
     server: {
-        port: 80
+        port: process.env.PORT || 80
     }
 };
